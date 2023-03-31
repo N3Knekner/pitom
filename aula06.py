@@ -62,6 +62,8 @@ for aluno in alunos:
 print('Aluno com menor media: ', aluno_com_menor_media)
 
 for aluno in alunos:
-    if aluno.get_media() < 7:
-        print(f'Aluno {aluno} reprovado!')
-    else: print(f'Aluno {aluno} aprovado!')
+    print(f'Aluno {aluno} reprovado!' if aluno.get_media() < 7 else f'Aluno {aluno} aprovado!')
+    
+    # if aluno.get_media() < 7:
+    #     print(f'Aluno {aluno} reprovado!')
+    # else: print(f'Aluno {aluno} aprovado!')
