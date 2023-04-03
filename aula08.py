@@ -38,15 +38,18 @@ async def products():
 
 # "{\"name\":{\"0\":\"category\",\"1\":\"subcategory\",\"2\":\"products\",\"3\":\"orders\",\"4\":\"items\",\"5\":\"customer\",\"6\":\"city\",\"7\":\"region\"}}"
 
+
+
 # ● Criar rota para retornar os clientes dos mercados LATAM, US e Canada;
+
 @app.get('/markets/l_u_c')
 async def markets():
     markets_ = pd.read_sql(
         con=conexao, sql="SELECT customer.* from customer join city using(cty_sequence) join region using(reg_sequence) where market in ('LATAN', 'US', 'Canada')")
     return markets_.to_json(orient='records')
 
-# ● Criar rota para retornar lista de pedidos e itens do mercado EU;
 
+# ● Criar rota para retornar lista de pedidos e itens do mercado EU;
 
 @app.get('/markets/{target}/orders')
 async def orders(target: str):
@@ -59,11 +62,12 @@ async def orders(target: str):
 @app.get('/markets/{target}/orders/items')
 async def orders(target: str):
     orders_ = pd.read_sql(
-        con=conexao, sql=f"SELECT items.* from items join orders using(ord_sequence) join customer using(cst_sequence) join city using(cty_sequence) join region using(reg_sequence) where market like '{target}'")
+        con=conexao, sql=f"SELECT items.*, market from items join orders using(ord_sequence) join customer using(cst_sequence) join city using(cty_sequence) join region using(reg_sequence)")
+    orders_ = orders_[orders_['market'] == target]
     return orders_.to_json(orient='records')
 
-# ● Criar rota para retornar os pedidos do anos 2013 e 2014 da categoria Furniture no mercado EMEA;
 
+# ● Criar rota para retornar os pedidos do anos 2013 e 2014 da categoria Furniture no mercado EMEA;
 
 @app.get('/markets/{target}/orders/{year}/category/{category}')
 async def orders_category(target: str, year: str, category: str):
