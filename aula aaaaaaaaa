@@ -1,0 +1,94 @@
+Django - demonstração
+Ambiente
+Dentro da pasta testedjango (mkdir, etc)
+virtualenv teste_django -p python3
+source teste_django/bin/activate
+pip install django
+django-admin startproject teste
+Arrastar pro VsCode!
+django-admin : runserver!
+python manage.py runserver
+shift+command+p
+echo $VIRTUAL_ENV + bin/python3
+terminal ^`
+python3 manage.py runserver
+Primeiro App
+Django: combinado de vários apps, cada um responsável por uma funcionalidade
+Admin: interface de admin para administrar os dados
+Auth: Authenticator de usuários
+Sessions: memória no servidor, não muito usado hoje - podemos deletar!
+Messages: Mostrar notificações ao usuário
+Podemos criar os nossos!
+python3 manage.py startapp primeiroapp
+apps: config
+models: model classes - pegar dados da base e apresentar ao usuário
+tests - testes unitários
+Adicione o app ao settings.py
+Views
+Funções view
+Request -> response
+Talvez algumas pessoas conheçam como “action”, é um request handler
+Em view:
+from django.http import HttpResponse
+E definir função!
+Exemplo:
+——
+def diga_oi(request):
+  # Buscar dados de base
+  # Manipular dados
+  # Mandar emails...
+  return HttpResponse(‘Oi galerinha’)
+———
+E a URL? Mapear URL à view
+Criar file urls.py
+—
+from django.urls import path
+from . import views
+# URLConf
+urlpatterns = [ # Precisa ser esse o nome
+  path(‘primeiroapp/oi’, views.diga_oi)
+]
+—
+Em teste, urls.py (main!)
+——
+from django.contrib import admin
+from django.urls import path, include
+urlpatterns = [
+  path(‘admin/’, admin.site.urls),
+  path(‘primeiroapp/’, include(‘primeiroapp.urls’))
+]
+—-
+Depois, remover o início da url no local
+  path(‘oi/’, views.diga_oi)
+Testar no terminal
+teste % python3 manage.py runserver
+http://127.0.0.1:8000/primeiroapp/oi/
+E como deixar bonitinho? Templates
+Folder templates no primeiroapp, dentro file oi.html
+<h1>Olá galerinha</h1>
+Ou:
+<HTML>
+  <HEAD>
+  <TITLE>Exemplo Jovens Talentos</TITLE>
+  </HEAD>
+  <BODY BGCOLOR=“FFFFFF”>
+  <HR>
+  <a href=“https://www.ipm.com.br”>Site da IPM</a>
+  aqui um link pra um site qualquer
+  <H1>Exemplo de html!</H1>
+  <H2>hehe</H2>
+  Dúvidas falar com <a href=“ana.mees@ipm.com.br”>
+  ana.mees@ipm.com.br</a>.
+  <P> Até aqui deu tudo certo! Parabéns
+  <P> <B>Novo parágrafo</B>
+  <BR> <B><I>Frase em negrito e itálico.</I></B>
+  <HR>
+  </BODY>
+  </HTML>
+Mudar o views local:
+def diga_oi(request):
+  # Buscar dados de base
+  # Manipular dados
+  # Mandar emails...
+  return render(request, ‘oi.html’)
+deactivate

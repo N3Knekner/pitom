@@ -1,0 +1,46 @@
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 82160 entries, 0 to 82159
+Data columns (total 39 columns):
+ #   Column                           Non-Null Count  Dtype  
+---  ------                           --------------  -----  
+ 0   Unnamed: 0                       82160 non-null  int64  
+ 1   empresa_sigla                    82160 non-null  object 
+ 2   empresa_nome                     82160 non-null  object 
+ 3   empresa_nacionalidade            82160 non-null  object 
+ 4   ano                              82160 non-null  int64  
+ 5   mes                              82160 non-null  int64  
+ 6   aeroporto_de_origem_sigla        82151 non-null  object 
+ 7   aeroporto_de_origem_nome         82151 non-null  object 
+ 8   aeroporto_de_origem_uf           66904 non-null  object 
+ 9   aeroporto_de_origem_regiao       66904 non-null  object 
+ 10  aeroporto_de_origem_pais         82151 non-null  object 
+ 11  aeroporto_de_origem_continente   82151 non-null  object 
+ 12  aeroporto_de_destino_sigla       82160 non-null  object 
+ 13  aeroporto_de_destino_nome        82160 non-null  object 
+ 14  aeroporto_de_destino_uf          66257 non-null  object 
+ 15  aeroporto_de_destino_regiao      66257 non-null  object 
+ 16  aeroporto_de_destino_pais        82160 non-null  object 
+ 17  aeroporto_de_destino_continente  82160 non-null  object 
+ 18  natureza                         82160 non-null  object 
+ 19  grupo_de_voo                     82160 non-null  object 
+ 20  passageiros_pagos                81581 non-null  float64
+ 21  passageiros_gratis               81581 non-null  float64
+ 22  carga_paga_kg                    81581 non-null  float64
+ 23  carga_gratis_kg                  81581 non-null  float64
+ 24  correio_kg                       81581 non-null  float64
+ 25  ask                              71456 non-null  float64
+ 26  rpk                              71465 non-null  float64
+ 27  atk                              71456 non-null  float64
+ 28  rtk                              71452 non-null  float64
+ 29  combustivel_litros               66313 non-null  float64
+ 30  distancia_voada_km               71456 non-null  float64
+ 31  decolagens                       71479 non-null  float64
+ 32  carga_paga_km                    71465 non-null  float64
+ 33  carga_gratis_km                  71452 non-null  float64
+ 34  correio_km                       71465 non-null  float64
+ 35  assentos                         71479 non-null  float64
+ 36  payload                          71479 non-null  float64
+ 37  horas_voadas                     71478 non-null  object 
+ 38  bagagem_kg                       73680 non-null  float64
+dtypes: float64(18), int64(3), object(18)
+memory usage: 24.4+ MB
